@@ -1,6 +1,10 @@
 # Heartbeat Animation ❤️
 
-https://github.com/user-attachments/assets/ed08ecfc-f2ba-47cd-9338-b9b4f5b1175d
+
+
+https://github.com/user-attachments/assets/bc094ace-0af4-4983-aaab-50fbc8e254c8
+
+
 
 A small cinematic heart animation project inspired by the iconic heartbeat code scene from *Lighter and Princess* (2022 C-Drama), coded by Li Xun 🖤
 
