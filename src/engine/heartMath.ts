@@ -69,8 +69,8 @@ export function generateDustParticles(count = 300): Particle[] {
     particles.push({
       x: (Math.random() - 0.5) * window.innerWidth,
       y: (Math.random() - 0.5) * window.innerHeight,
-      size: Math.random() * 2 + 0.5,
-      alpha: Math.random() * 0.25,
+      size: Math.random() * 0.6 + 0.08,
+      alpha: Math.random() * 0.045,
       phase: Math.random() * Math.PI * 2,
       glow: true,
       vx: (Math.random() - 0.5) * 0.08,

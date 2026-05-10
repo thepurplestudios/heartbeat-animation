@@ -48,8 +48,7 @@ function HeartPixi() {
       const heart = new Graphics();
       const glitter = new Graphics();
 
-      glitter.filters = [new BlurFilter({ strength: 4 })];
-      dust.filters = [new BlurFilter({ strength: 2 })];
+      glitter.filters = [new BlurFilter({ strength: 0.6 })];
 
       // render order
       stage.addChild(dust);
@@ -62,11 +61,24 @@ function HeartPixi() {
         const scale = heartbeat(elapsed);
 
         dust.clear();
+
         heart.clear();
+        heart.rect(
+          -window.innerWidth,
+          -window.innerHeight,
+          window.innerWidth * 2,
+          window.innerHeight * 2,
+        );
+
+        heart.fill({
+          color: 0x000000,
+          alpha: 0.08,
+        });
+
         glitter.clear();
 
         // ambient dust
-        dustParticles.forEach((p) => {
+        /* dustParticles.forEach((p) => {
           p.x += p.vx;
           p.y += p.vy;
 
@@ -95,7 +107,7 @@ function HeartPixi() {
           if (p.y < -window.innerHeight / 2) {
             p.y = window.innerHeight / 2;
           }
-        });
+        }); */
 
         // heart body
         heartParticles.forEach((p) => {
