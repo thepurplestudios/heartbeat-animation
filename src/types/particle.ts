@@ -3,4 +3,6 @@ export type Particle = {
   y: number;
   size: number;
   alpha: number;
+  phase: number;
+  glow: boolean;
 };
