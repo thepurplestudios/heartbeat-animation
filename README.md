@@ -1,73 +1,77 @@
-# React + TypeScript + Vite
+# Heartbeat Animation ❤️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small cinematic heart animation project inspired by the iconic heartbeat code scene from *Lighter and Princess* (2022 C-Drama), coded by Li Xun 🖤
 
-Currently, two official plugins are available:
+Originally this was a Python animation.  
+I wanted to recreate the same vibe on the web while learning creative frontend animation and particle systems.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- PixiJS
+- Framer Motion
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## What's happening here?
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Basically:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- a heart shape is generated using math
+- thousands of particles are rendered around it
+- particles glow + sparkle
+- the heart beats
+- lighting + motion make it feel cinematic
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+I honestly cared more about the *vibe* than the math 😭
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Branches
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### `canvas-v1`
+First version using normal Canvas rendering.
+
+### `pixi-v1`
+Moved rendering to PixiJS for smoother GPU rendering and better glow.
+
+### `cinematic-final`
+Final polished version with:
+- cinematic lighting
+- heartbeat rhythm
+- sparkle particles
+- subtle motion
+- cleaner glow
+- better atmosphere
+
+---
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+
+Open:
+
+http://localhost:5173
+Why I made this
+
+Mostly because:
+
+I love Lighter and Princess
+Li Xun is one of my favorite MLs
+I wanted to learn creative frontend animation stuff
+That heartbeat scene looked way too cool 😭
+About me
+
+I made this with a LOT of help from ChatGPT because I’m honestly not super into heavy math stuff and would never survive calculating heart equations myself 💀
+
+This project was mostly me experimenting, learning PixiJS, understanding particles/rendering, and trying to recreate a vibe from one of my favorite dramas.
+
+And somehow it actually turned out beautiful ✨
