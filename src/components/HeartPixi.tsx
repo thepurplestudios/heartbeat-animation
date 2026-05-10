@@ -22,7 +22,7 @@ function HeartPixi() {
 
       await app.init({
         resizeTo: window,
-        background: "#000000",
+        backgroundAlpha: 0,
         antialias: true,
       });
 
