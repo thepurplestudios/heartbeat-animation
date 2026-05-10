@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import { Application, Graphics, Container } from "pixi.js";
-import { BloomFilter } from "@pixi/filter-bloom";
+import { Application, Graphics, Container, BlurFilter } from "pixi.js";
 import {
   generateGlitterParticles,
   generateHeartParticles,
 } from "../engine/heartMath";
+import { heartbeat } from "../engine/heartbeat";
 
 function HeartPixi() {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -43,13 +43,7 @@ function HeartPixi() {
       const heart = new Graphics();
       const glitter = new Graphics();
 
-      glitter.filters = [
-        new BloomFilter({
-          strength: 1.5,
-          blur: 6,
-          quality: 4,
-        }),
-      ];
+      glitter.filters = [new BlurFilter({ strength: 4 })];
 
       stage.addChild(heart);
       stage.addChild(glitter);
@@ -57,7 +51,7 @@ function HeartPixi() {
       app.ticker.add((ticker) => {
         const elapsed = ticker.lastTime / 1000;
 
-        const scale = 1 + Math.sin(elapsed * 3.5) * 0.08;
+        const scale = heartbeat(elapsed);
 
         heart.clear();
         glitter.clear();
