@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { generateHeartParticles } from "../engine/heartMath";
+import type { Particle } from "../types/particle";
 
 function HeartCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -14,22 +15,38 @@ function HeartCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const particles = generateHeartParticles(8000);
+    const particles: Particle[] = generateHeartParticles(8000);
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let animationId = 0;
+    let start = performance.now();
 
-    particles.forEach((particle) => {
-      const x = canvas.width / 2 + particle.x;
-      const y = canvas.height / 2 + particle.y;
+    const render = (time: number) => {
+      const elapsed = (time - start) / 1000;
 
-      ctx.beginPath();
+      // heartbeat scale
+      const scale = 1 + Math.sin(elapsed * 3) * 0.08;
 
-      ctx.fillStyle = `rgba(255,45,85,${particle.alpha})`;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.arc(x, y, particle.size, 0, Math.PI * 2);
+      particles.forEach((particle) => {
+        const x = canvas.width / 2 + particle.x * scale;
+        const y = canvas.height / 2 + particle.y * scale;
 
-      ctx.fill();
-    });
+        ctx.beginPath();
+
+        ctx.fillStyle = `rgba(255,45,85,${particle.alpha})`;
+
+        ctx.arc(x, y, particle.size * scale, 0, Math.PI * 2);
+
+        ctx.fill();
+      });
+
+      animationId = requestAnimationFrame(render);
+    };
+
+    animationId = requestAnimationFrame(render);
+
+    return () => cancelAnimationFrame(animationId);
   }, []);
 
   return <canvas ref={canvasRef} className="absolute inset-0" />;
