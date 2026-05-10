@@ -3,6 +3,7 @@ import { Application, Graphics, Container, BlurFilter } from "pixi.js";
 import {
   generateGlitterParticles,
   generateHeartParticles,
+  generateDustParticles,
 } from "../engine/heartMath";
 import { heartbeat } from "../engine/heartbeat";
 
@@ -11,6 +12,7 @@ function HeartPixi() {
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
+
     if (!wrapper) return;
 
     let mounted = true;
@@ -32,6 +34,7 @@ function HeartPixi() {
       wrapper.appendChild(app.canvas);
 
       const stage = new Container();
+
       stage.x = window.innerWidth / 2;
       stage.y = window.innerHeight / 2;
 
@@ -39,12 +42,17 @@ function HeartPixi() {
 
       const heartParticles = generateHeartParticles(3500);
       const glitterParticles = generateGlitterParticles(700);
+      const dustParticles = generateDustParticles(300);
 
+      const dust = new Graphics();
       const heart = new Graphics();
       const glitter = new Graphics();
 
       glitter.filters = [new BlurFilter({ strength: 4 })];
+      dust.filters = [new BlurFilter({ strength: 2 })];
 
+      // render order
+      stage.addChild(dust);
       stage.addChild(heart);
       stage.addChild(glitter);
 
@@ -53,10 +61,43 @@ function HeartPixi() {
 
         const scale = heartbeat(elapsed);
 
+        dust.clear();
         heart.clear();
         glitter.clear();
 
-        // body
+        // ambient dust
+        dustParticles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          const alpha = p.alpha * (0.5 + 0.5 * Math.cos(elapsed + p.phase));
+
+          dust.circle(p.x, p.y, p.size);
+
+          dust.fill({
+            color: 0xff8cb4,
+            alpha,
+          });
+
+          // wrap around screen
+          if (p.x > window.innerWidth / 2) {
+            p.x = -window.innerWidth / 2;
+          }
+
+          if (p.x < -window.innerWidth / 2) {
+            p.x = window.innerWidth / 2;
+          }
+
+          if (p.y > window.innerHeight / 2) {
+            p.y = -window.innerHeight / 2;
+          }
+
+          if (p.y < -window.innerHeight / 2) {
+            p.y = window.innerHeight / 2;
+          }
+        });
+
+        // heart body
         heartParticles.forEach((p) => {
           const alpha = p.alpha * (0.7 + 0.3 * Math.cos(elapsed * 2 + p.phase));
 
@@ -68,7 +109,7 @@ function HeartPixi() {
           });
         });
 
-        // glitter
+        // glitter particles
         glitterParticles.forEach((p) => {
           const alpha = p.alpha * (0.4 + 0.6 * Math.cos(elapsed * 5 + p.phase));
 

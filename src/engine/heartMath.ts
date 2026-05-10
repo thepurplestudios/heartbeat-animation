@@ -24,6 +24,8 @@ export function generateHeartParticles(count = 7000): Particle[] {
       alpha: Math.random() * 0.6 + 0.2,
       phase: Math.random() * Math.PI * 2,
       glow: false,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
     });
   }
 
@@ -52,6 +54,27 @@ export function generateGlitterParticles(count = 1800): Particle[] {
       alpha: Math.random() * 0.8 + 0.2,
       phase: Math.random() * Math.PI * 2,
       glow: true,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+    });
+  }
+
+  return particles;
+}
+
+export function generateDustParticles(count = 300): Particle[] {
+  const particles: Particle[] = [];
+
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: (Math.random() - 0.5) * window.innerWidth,
+      y: (Math.random() - 0.5) * window.innerHeight,
+      size: Math.random() * 2 + 0.5,
+      alpha: Math.random() * 0.25,
+      phase: Math.random() * Math.PI * 2,
+      glow: true,
+      vx: (Math.random() - 0.5) * 0.08,
+      vy: (Math.random() - 0.5) * 0.08,
     });
   }
 

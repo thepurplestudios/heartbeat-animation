@@ -5,4 +5,6 @@ export type Particle = {
   alpha: number;
   phase: number;
   glow: boolean;
+  vx: number;
+  vy: number;
 };
