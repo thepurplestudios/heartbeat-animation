@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { generateHeartPoints } from "../engine/heartMath";
+import { generateHeartParticles } from "../engine/heartMath";
 
 function HeartCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -14,18 +14,20 @@ function HeartCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const points = generateHeartPoints(3000);
+    const particles = generateHeartParticles(8000);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#ff2d55";
-
-    points.forEach((point) => {
-      const x = canvas.width / 2 + point.x;
-      const y = canvas.height / 2 + point.y;
+    particles.forEach((particle) => {
+      const x = canvas.width / 2 + particle.x;
+      const y = canvas.height / 2 + particle.y;
 
       ctx.beginPath();
-      ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+
+      ctx.fillStyle = `rgba(255,45,85,${particle.alpha})`;
+
+      ctx.arc(x, y, particle.size, 0, Math.PI * 2);
+
       ctx.fill();
     });
   }, []);
