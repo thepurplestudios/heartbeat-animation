@@ -24,6 +24,8 @@ function HeartPixi() {
         resizeTo: window,
         backgroundAlpha: 0,
         antialias: true,
+        resolution: window.devicePixelRatio || 1,
+        autoDensity: true,
       });
 
       if (!mounted) {
@@ -109,6 +111,12 @@ function HeartPixi() {
           }
         }); */
 
+        heartParticles.forEach((p) => {
+          p.x = p.originX + Math.cos(elapsed * 0.8 + p.phase) * 0.8;
+
+          p.y = p.originY + Math.sin(elapsed * 0.8 + p.phase) * 0.8;
+        });
+
         // heart body
         heartParticles.forEach((p) => {
           const alpha = p.alpha * (0.7 + 0.3 * Math.cos(elapsed * 2 + p.phase));
@@ -119,6 +127,12 @@ function HeartPixi() {
             color: 0xff2d55,
             alpha,
           });
+        });
+
+        glitterParticles.forEach((p) => {
+          p.x = p.originX + Math.cos(elapsed * 1.2 + p.phase) * 1.5;
+
+          p.y = p.originY + Math.sin(elapsed * 1.2 + p.phase) * 1.5;
         });
 
         // glitter particles
