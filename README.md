@@ -1,5 +1,7 @@
 # Heartbeat Animation ❤️
 
+https://github.com/user-attachments/assets/ed08ecfc-f2ba-47cd-9338-b9b4f5b1175d
+
 A small cinematic heart animation project inspired by the iconic heartbeat code scene from *Lighter and Princess* (2022 C-Drama), coded by Li Xun 🖤
 
 Originally this was a Python animation.  
@@ -53,25 +55,36 @@ Final polished version with:
 
 ## Run locally
 
+## Run locally
+
 ```bash
 npm install
 npm run dev
+```
 
 Open:
 
 http://localhost:5173
-Why I made this
+
+---
+
+## Why I made this
 
 Mostly because:
 
-I love Lighter and Princess
-Li Xun is one of my favorite MLs
-I wanted to learn creative frontend animation stuff
-That heartbeat scene looked way too cool 😭
-About me
+1. I love *Lighter and Princess*
+2. Li Xun is one of my favorite MLs
+3. I wanted to learn creative frontend animation stuff
+4. That heartbeat scene looked way too cool 😭
+
+---
+
+## About me
 
 I made this with a LOT of help from ChatGPT because I’m honestly not super into heavy math stuff and would never survive calculating heart equations myself 💀
 
 This project was mostly me experimenting, learning PixiJS, understanding particles/rendering, and trying to recreate a vibe from one of my favorite dramas.
 
 And somehow it actually turned out beautiful ✨
+
+
